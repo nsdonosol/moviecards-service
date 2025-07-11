@@ -32,12 +32,23 @@ public class Actor {
     @JsonIgnoreProperties("actors") // Añadido
     private List<Movie> movies;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date deadDate;
+
     public Actor() {
     }
 
     public Actor(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Date getDeadDate() {
+        return deadDate;
+    }
+
+    public void setDeadDate(Date deadDate) {
+        this.deadDate = deadDate;
     }
 
     public Integer getId() {
@@ -87,12 +98,12 @@ public class Actor {
         if (o == null || getClass() != o.getClass())
             return false;
         Actor actor = (Actor) o;
-        return Objects.equals(id, actor.id) && Objects.equals(name, actor.name)
+        return Objects.equals(deadDate, actor.deadDate) && Objects.equals(id, actor.id) && Objects.equals(name, actor.name)
                 && Objects.equals(birthDate, actor.birthDate) && Objects.equals(country, actor.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, birthDate, country);
+        return Objects.hash(id, name, birthDate, country, deadDate);
     }
 }
